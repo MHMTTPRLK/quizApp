@@ -20,9 +20,11 @@ class DatabaseSeeder extends Seeder
             'email'=>'mhmttparlak@gmail.com',
             'email_verified_at' => now(),
             'type'=>'admin',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => '$2b$10$pL4ML77DYChNciipQpAkJ.KujUxqPgQ5McVeFVkx9hAgsRNnYx6W6', // 12345678
             'remember_token' => Str::random(10),
         ]);
          \App\Models\User::factory(5)->create();
+        // \App\Models\Quiz::factory(10)->create();
+
     }
 }
