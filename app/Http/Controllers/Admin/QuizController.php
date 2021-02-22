@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Quiz;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
@@ -14,7 +15,8 @@ class QuizController extends Controller
      */
     public function index()
     {
-      return "index func";
+        $quizzes=Quiz::paginate(5);
+      return view('admin.quiz.list',compact('quizzes'));
     }
 
     /**
@@ -24,6 +26,7 @@ class QuizController extends Controller
      */
     public function create()
     {
+
         return "create func";
     }
 
