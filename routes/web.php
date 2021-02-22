@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin\QuizController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,12 +21,9 @@ Route::middleware(['auth', 'verified'])->get('/panel', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::group([
-    'middleware'=>['auth','isAdmin'],
-    'prefix'=>'admin'
-],
-    function () {
+Route::group(['middleware'=>['auth','isAdmin'],'prefix'=>'admin'],function () {
 
+        Route::resource('quizzes',QuizController::class);
 
     /* Route::get('deneme',function () {
          return "prefix testi";
