@@ -1,12 +1,13 @@
 <x-app-layout>
     <x-slot name="header">Quiz Oluştur</x-slot>
+
     <div class="card">
         <div class="card-body">
           <form method="post" action="{{route('quizzes.store')}}">
             @csrf
               <div class="form-group">
                 <label>Quiz Başlığı</label>
-                <input type="text" name="title" class="form-control" required>
+                <input type="text" name="title" class="form-control" >
               </div>
               <div class="form-group">
                   <label>Quiz Açıklama</label>

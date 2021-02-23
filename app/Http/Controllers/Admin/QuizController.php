@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
+use App\Http\Requests\QuizCreateRequest;
 
 class QuizController extends Controller
 {
@@ -37,7 +38,7 @@ class QuizController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuizCreateRequest $request)
     {
 
         dd($request->post());
