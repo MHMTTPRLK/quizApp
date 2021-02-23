@@ -24,8 +24,9 @@ class QuizCreateRequest extends FormRequest
     public function rules()
     {
         return [
-           'title'=>'required',
-           'description'=>'required',
+           'title'=>'required|min:3|max:200',
+           'description'=>'max:1000',
+           'finished_at'=>'nullable|after:'.now()
 
         ];
     }
@@ -33,6 +34,7 @@ class QuizCreateRequest extends FormRequest
         return [
             'title'=>'Quiz Başlığı',
             'description'=>'Quiz Açıklama',
+            'finished_at'=>'Bitiş Tarihi',
 
         ];
     }
