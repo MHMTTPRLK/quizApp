@@ -27,7 +27,8 @@ class QuizController extends Controller
     public function create()
     {
 
-        return "create func";
+        return view('admin.quiz.create');
+
     }
 
     /**
@@ -38,7 +39,7 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
-
+        return "deneme";
     }
 
     /**
