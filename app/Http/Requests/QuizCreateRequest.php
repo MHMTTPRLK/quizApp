@@ -29,4 +29,11 @@ class QuizCreateRequest extends FormRequest
 
         ];
     }
+    public function attributes(){
+        return [
+            'title'=>'Quiz Başlığı',
+            'description'=>'Quiz Açıklama',
+
+        ];
+    }
 }
