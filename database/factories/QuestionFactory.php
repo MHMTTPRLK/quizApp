@@ -13,7 +13,7 @@ class QuestionFactory extends Factory
      *
      * @var string
      */
-    protected $model = Model::class;
+    protected $model = Question::class;
 
     /**
      * Define the model's default state.
