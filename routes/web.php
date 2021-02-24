@@ -22,8 +22,10 @@ Route::middleware(['auth', 'verified'])->get('/panel', function () {
 })->name('dashboard');
 
 Route::group(['middleware'=>['auth','isAdmin'],'prefix'=>'admin'],function () {
+    // destroy id ile çalıştığı için mutlaka number gelmesi gerekiyor ayarlama yapmadığımız taktirde hata verecektir.
+    Route::get('quizzes/{id}',[QuizController::class,'destroy'])->whereNumber('id')->name('quizzes.destroy');
+     Route::resource('quizzes',QuizController::class);
 
-        Route::resource('quizzes',QuizController::class);
 
     /* Route::get('deneme',function () {
          return "prefix testi";
