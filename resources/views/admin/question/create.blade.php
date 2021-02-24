@@ -4,7 +4,7 @@
 
     <div class="card">
         <div class="card-body">
-            <form method="post" action="{{route('questions.store',$quiz->id)}}" enctype="multipart" >
+            <form method="post" action="{{route('questions.store',$quiz->id)}}" enctype="multipart/form-data" >
                 @csrf
                 <div class="form-group">
                     <label>Soru</label>
@@ -45,11 +45,11 @@
                 </div>
                 <div class="form-group">
                     <label>Dogru Cevap</label>
-                    <select class="form-control" name="correct_answeer">
-                        <option value="answer1">1.cevap</option>
-                        <option value="answer2">2.cevap</option>
-                        <option value="answer3">3.cevap</option>
-                        <option value="answer4">4.cevap</option>
+                    <select class="form-control" name="correct_answer">
+                        <option @if(old('correct_answer')==='answer1') selected @endif value="answer1">1.cevap</option>
+                        <option @if(old('correct_answer')==='answer2') selected @endif value="answer2">2.cevap</option>
+                        <option @if(old('correct_answer')==='answer3') selected @endif value="answer3">3.cevap</option>
+                        <option @if(old('correct_answer')==='answer4') selected @endif value="answer4">4.cevap</option>
                     </select>
                 </div>
                 <div class="form-group">
