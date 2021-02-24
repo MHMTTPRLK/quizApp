@@ -27,9 +27,10 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($quiz_id)
+    public function create($id)
     {
-       return $quiz_id;
+        $quiz=Quiz::find($id);
+       return view('admin.question.create',compact('quiz'));
     }
 
     /**
@@ -40,7 +41,7 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       return $request->post();
     }
 
     /**
