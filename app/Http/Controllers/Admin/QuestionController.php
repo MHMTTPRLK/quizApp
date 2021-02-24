@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Question;
+use App\Models\Quiz;
+
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -12,9 +15,11 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        //$quiz=Quiz::find($id);
+        $quizzes= Quiz::whereId($id)->with('questions')->first() or abort(404, 'Quiz Bulunamadı');
+        return view('admin.question.list',compact('quizzes'));
     }
 
     /**
@@ -22,9 +27,9 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($quiz_id)
     {
-        //
+       return $quiz_id;
     }
 
     /**
@@ -44,9 +49,9 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($quiz_id,$id)
     {
-        //
+        return $quiz_id."- ".$id;
     }
 
     /**
