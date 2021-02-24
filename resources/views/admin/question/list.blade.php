@@ -27,7 +27,18 @@
                 @foreach($quizzes->questions as $question)
                     <tr>
                         <td>{{$question->question}}</td>
-                        <td>{{$question->image}}</td>
+                        <td>
+                            @if($question->image)
+                                <a href="{{asset($question->image)}}" target="_blank">
+                                    <img src="{{asset($question->image)}}" class="img-responsive" width="200px;">
+                                </a>
+                            @else
+                                <a href="{{asset("images/not-image.png")}}" target="_blank">
+                                    <img src="{{asset("images/not-image.png")}}" class="img-responsive" width="200px;">
+                                </a>
+                            @endif
+
+                            </td>
                         <td>{{$question->answer1}}</td>
                         <td>{{$question->answer2}}</td>
                         <td>{{$question->answer3}}</td>
@@ -35,7 +46,7 @@
                         <td class="text-success">{{substr($question->correct_answer,-1)}}.Cevap</td>
                         <td>
 
-                            <a href="{{route('quizzes.edit',$question->id)}}" class="btn btn-sm btn-primary">
+                            <a href="{{route('questions.edit',[$quizzes->id,$question->id])}}" class="btn btn-sm btn-primary">
                                 <i class="fa fa-edit"></i> </a>
                             <a href="{{route('quizzes.destroy',$question->id)}}" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> </a>
                         </td>
