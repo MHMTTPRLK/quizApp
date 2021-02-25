@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\QuizCreateRequest;
 use App\Http\Requests\QuizUpdateRequest;
 
+
 class QuizController extends Controller
 {
     /**
@@ -17,7 +18,7 @@ class QuizController extends Controller
      */
     public function index()
     {
-        $quizzes=Quiz::paginate(5);
+       $quizzes=Quiz::withCount('questions')->paginate(5);
       return view('admin.quiz.list',compact('quizzes'));
     }
 
@@ -65,7 +66,7 @@ class QuizController extends Controller
      */
     public function edit($id)
     {
-        $quiz=Quiz::find($id) or abort(404, 'Quiz Bulunamadı');
+        $quiz=Quiz::withCount('questions')->find($id) or abort(404, 'Quiz Bulunamadı');
         return view('admin.quiz.edit',compact('quiz'));
     }
 
