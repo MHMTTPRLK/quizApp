@@ -48,7 +48,7 @@
 
                             <a href="{{route('questions.edit',[$quizzes->id,$question->id])}}" class="btn btn-sm btn-primary">
                                 <i class="fa fa-edit"></i> </a>
-                            <a href="{{route('quizzes.destroy',$question->id)}}" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> </a>
+                            <a href="{{route('questions.destroy',[$quizzes->id,$question->id])}}" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> </a>
                         </td>
                     </tr>
                 @endforeach
