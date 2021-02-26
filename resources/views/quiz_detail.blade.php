@@ -4,6 +4,7 @@
     <div class="card" >
         <div class="card-body">
             <p class="card-text">
+
                 <div class="row">
                 <div class="col-md-4">
                     <ul class="list-group">
@@ -30,7 +31,7 @@
                 </div>
                 <div class="col-md-8">
             {{$quiz->description}}</p>
-            <a href="#" class="btn btn-primary btn-block btn-sm ">Quiz'e Katıl</a>
+            <a href="{{route('quiz.join',$quiz->slug)}}" class="btn btn-primary btn-block btn-sm ">Quiz'e Katıl</a>
                 </div>
 
             </div>
