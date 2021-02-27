@@ -28,6 +28,33 @@ class Quiz extends Model
     {
         return $this->hasMany('App\Models\Question');
     }
+
+    protected $appends=['details'];
+    public function getDetailsAttribute()
+    {
+        if($this->results->count()>0)
+        {
+            return [
+                'avarage'=>round($this->results()->avg('point')),
+                'join_count'=>count($this->results()->get()) //$this->>results()->count()
+            ];
+        }
+       return null;
+
+    }
+
+
+
+
+    public function results()
+    {
+        return $this->hasMany('App\Models\Result');
+    }
+    public function my_result()
+    {
+        return $this->hasOne('App\Models\Result')->where('user_id',auth()->user()->id);
+    }
+
     public function sluggable(): array
     {
         return [
@@ -37,4 +64,6 @@ class Quiz extends Model
             ]
         ];
     }
+
+
 }

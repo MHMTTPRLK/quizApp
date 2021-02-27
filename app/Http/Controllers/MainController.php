@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Answer;
-use App\Models\Result;
+
 use Illuminate\Http\Request;
 use App\Models\Quiz;
-
+use App\Models\Result;
 
 class MainController extends Controller
 {
@@ -17,7 +17,7 @@ class MainController extends Controller
  }
     public function quiz_detail($slug)
     {
-      $quiz=Quiz::whereSlug($slug)->withCount('questions')->first() or abort('404','Quiz Bulunamadı');
+      $quiz=Quiz::whereSlug($slug)->with('my_result','results')->withCount('questions')->first() or abort('404','Quiz Bulunamadı') ;
       return view('quiz_detail',compact('quiz'));
     }
     public function  quiz($slug)
@@ -29,6 +29,10 @@ class MainController extends Controller
     {
         $quiz=Quiz::with('questions')->whereSlug($slug)->first();
         $correct=0;
+        if($quiz->my_result)
+        {
+            abort('404',"Bu Quiz'e daha önce katıldınız");
+        }
         foreach($quiz->questions as $question)
         {
            // echo $question->id."-".$question->correct_answer."/".$request->post($question->id)."<br>";
