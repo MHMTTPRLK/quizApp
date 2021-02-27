@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
 use Illuminate\Http\Request;
 use App\Models\Quiz;
 
@@ -23,8 +24,21 @@ class MainController extends Controller
         $quiz=Quiz::whereSlug($slug)->with('questions')->first();
         return view('quiz',compact('quiz'));
     }
-    public function result($slug)
+    public function result(Request $request,$slug)
     {
-        return $slug;
+        $quiz=Quiz::with('questions')->whereSlug($slug)->first();
+        foreach($quiz->questions as $question)
+        {
+            echo $question->id."-".$question->correct_answer."/".$request->post($question->id)."<br>";
+            Answer::create([
+               'user_id'=>auth()->user()->id,
+                'question_id'=>$question->id,
+                'answer'=>$request->post($question->id),
+            ]);
+
+        }
+
+       // print_r($request->post());
+
     }
 }

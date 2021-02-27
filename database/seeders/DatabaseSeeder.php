@@ -18,10 +18,11 @@ class DatabaseSeeder extends Seeder
 
         //User ve Quiz Factory Komutları User ve Quiz Seeder Sayfalarına Taşındı.
         $this->call([
-            UserSeeder::class,
+           UserSeeder::class,
            QuizSeeder::class,
            QuestionSeeder::class,
            AnswerSeeder::class,
+           ResultSeeder::class,
         ]);
 
 
