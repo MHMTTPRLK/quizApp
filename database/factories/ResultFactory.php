@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 
 use App\Models\Result;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ResultFactory extends Factory
@@ -30,4 +31,6 @@ class ResultFactory extends Factory
             'wrong'=>rand(1,20),
         ];
     }
+
+
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use App\Models\User;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 
@@ -42,10 +43,6 @@ class Quiz extends Model
        return null;
 
     }
-
-
-
-
     public function results()
     {
         return $this->hasMany('App\Models\Result');
@@ -55,6 +52,10 @@ class Quiz extends Model
         return $this->hasOne('App\Models\Result')->where('user_id',auth()->user()->id);
     }
 
+    public function topTen()
+    {
+        return $this->results()->orderByDesc('point')->take(10);
+    }
     public function sluggable(): array
     {
         return [
