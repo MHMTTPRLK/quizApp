@@ -23,6 +23,6 @@ class UserSeeder extends Seeder
             'password' => '$2b$10$pL4ML77DYChNciipQpAkJ.KujUxqPgQ5McVeFVkx9hAgsRNnYx6W6', // 12345678
             'remember_token' => Str::random(10),
         ]);
-        \App\Models\User::factory(5)->create();
+        \App\Models\User::factory(10)->create();
     }
 }
