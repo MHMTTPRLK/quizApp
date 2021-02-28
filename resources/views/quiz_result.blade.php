@@ -4,6 +4,7 @@
     <div class="card" >
         <div class="card-body">
 
+            <h3>Puan : <strong>{{$quiz->my_result->point}}</strong></h3>
             <div class="alert alert-secondary">
                 <span>
                 <i class="fa fa-square"></i> İşaretlediğin Şık <br>
@@ -14,6 +15,7 @@
 
 
                 @foreach ($quiz->questions as $question)
+
                     @if($question->correct_answer == $question->my_answer->answer)
                     <i class="fa fa-check text-success"></i>
                 @else
@@ -24,6 +26,8 @@
                     @if($question->image)
                         <img src="{{asset($question->image)}}"  class="img-responsive" width="50%">
                     @endif
+                        <br>
+                        <small>Bu Soruya <strong>%{{$question->true_percent}} </strong>Oranında Doğru Cevap Verildi</small>
                     {{-- Answer1--}}
                     <div class="form-check mt-2">
                         @if('answer1' == $question->correct_answer)
