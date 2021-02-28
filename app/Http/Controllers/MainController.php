@@ -11,6 +11,14 @@ use App\Models\Question;
 
 class MainController extends Controller
 {
+    public function index()
+    {
+        $quizzes=Quiz::where('status','publish')->where(function($query){
+            $query->whereNull('finished_at')->orWhere('finished_at','>',now());
+        })->withCount('questions')->paginate('3');
+        $results= auth()->user()->results;
+        return view('dashboard',compact('quizzes','results'));
+    }
  public function dashboard()
  {
     $quizzes=Quiz::where('status','publish')->where(function($query){

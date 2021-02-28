@@ -15,11 +15,10 @@ use App\Http\Controllers\MainController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::group(['middleware'=>'auth'],function(){
+    Route::get('/',[MainController::class,'dashboard'])->name('dashboard');
    Route::get('/panel',[MainController::class,'dashboard'])->name('dashboard');
    Route::get('quiz/detay/{slug}',[MainController::class,'quiz_detail'])->name('quiz.detail');
    Route::get('quiz/{slug}',[MainController::class,'quiz'])->name('quiz.join');
@@ -32,6 +31,7 @@ Route::group(['middleware'=>'auth'],function(){
 Route::group(['middleware'=>['auth','isAdmin'],'prefix'=>'admin'],function () {
     // destroy id ile çalıştığı için mutlaka number gelmesi gerekiyor ayarlama yapmadığımız taktirde hata verecektir.
     Route::get('quizzes/{id}',[QuizController::class,'destroy'])->whereNumber('id')->name('quizzes.destroy');
+    Route::get('quizzes/{id}/details',[QuizController::class,'show'])->whereNumber('id')->name('quizzes.details');
     Route::get('quiz/{quiz_id}/questions/{id}',[QuestionController::class,'destroy'])->whereNumber('id')->name('questions.destroy');
 
     Route::resource('quizzes',QuizController::class);
