@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Question;
+use App\Models\Answer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 
@@ -32,4 +33,5 @@ class QuestionFactory extends Factory
            'correct_answer'=>'answer'.rand(1,4)
         ];
     }
+
 }

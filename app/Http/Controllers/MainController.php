@@ -7,6 +7,7 @@ use App\Models\Answer;
 use Illuminate\Http\Request;
 use App\Models\Quiz;
 use App\Models\Result;
+use App\Models\Question;
 
 class MainController extends Controller
 {
@@ -22,7 +23,12 @@ class MainController extends Controller
     }
     public function  quiz($slug)
     {
-        $quiz=Quiz::whereSlug($slug)->with('questions')->first();
+
+        $quiz=Quiz::whereSlug($slug)->with('questions.my_answer')->first() or abort(404, 'Quiz Bulunamadı');
+        if($quiz->my_result)
+        {
+            return view('quiz_result',compact('quiz'));
+        }
         return view('quiz',compact('quiz'));
     }
     public function result(Request $request,$slug)
