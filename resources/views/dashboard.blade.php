@@ -21,7 +21,20 @@
           </div>
       </div>
       <div class="col-md-4">
-          deneme
+          <div class="card" >
+              <div class="card-header">
+                  Quiz Sonuçları
+              </div>
+              <ul class="list-group list-group-flush">
+                  @foreach($results as $result)
+                  <li class="list-group-item">
+                      <strong>{{$result->point}}</strong>-
+                      <a href="{{route('quiz.detail',$result->quiz->slug)}}">  {{$result->quiz->title}}<a>
+
+                  </li>
+                 @endforeach
+              </ul>
+          </div>
       </div>
   </div>
   <!--  <div class="py-12">
