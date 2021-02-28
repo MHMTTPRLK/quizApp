@@ -22,6 +22,19 @@ class Quiz extends Model
         'slug',
     ];
     protected $dates=['finished_at'];
+    protected $appends=['details','my_rank'];
+    public function getMyRankAttribute()
+    {
+        $rank=0;
+        foreach($this->results()->orderByDesc('point')->get() as $result)
+        {
+            $rank=$rank+1;
+            if(auth()->user()->id=== $result->user_id)
+            {
+                return $rank;
+            }
+        }
+    }
     public function getFinishedAtAttribute($date){
         return $date ? Carbon::parse($date) : null;
     }
@@ -30,7 +43,7 @@ class Quiz extends Model
         return $this->hasMany('App\Models\Question');
     }
 
-    protected $appends=['details'];
+
     public function getDetailsAttribute()
     {
         if($this->results->count()>0)
